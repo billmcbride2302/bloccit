@@ -21,7 +21,10 @@ require 'random_data'
      body: RandomData.random_paragraph
    )
  end
- 
+puts "#{Post.count}"
+ Post.find_or_create_by(title: "Something", body: "Something else")
+puts "#{Post.count}"
+
  puts "Seed finished"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
