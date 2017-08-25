@@ -23,6 +23,29 @@ let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", passw
      end
    end
 
+
+
+
+    describe "attributes" do
+     
+     it "should respond to name" do end
+
+     it "should respond to email" do expect(user).to respond_to(:email) end
+
+     it "should respond to the user's name" do 
+     	user.name "bloc_user"
+     	user.save
+     	expect(user.name).to eq "Bloc User"
+
+      end
+
+     end
+
+   end
+
+
+
+
     describe "invalid user" do
      let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com") }
      let(:user_with_invalid_email) { User.new(name: "Bloccit User", email: "") }
