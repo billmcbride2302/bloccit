@@ -21,3 +21,4 @@ class User < ApplicationRecord
    			self.name = name_array.join(" ")
    		end
 end
+end
