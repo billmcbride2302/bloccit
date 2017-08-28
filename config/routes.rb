@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get 'sponsored_posts/edit'
 
+  post 'users/confirm' => 'users#confirm'
+
   resources :topics do
  # #34
      resources :posts, except: [:index]
