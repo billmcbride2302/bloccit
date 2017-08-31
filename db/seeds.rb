@@ -1,5 +1,11 @@
 require 'random_data'
 
+user = User.first
+ user.update_attributes(
+   email: 'bill@pcrsocial.com', # replace this with your personal email
+   password: 'helloworld'
+ )
+
 # Create Topics
  15.times do
    Topic.create!(
@@ -9,11 +15,23 @@ require 'random_data'
  end
  topics = Topic.all
 
+  # Create Users
+ 5.times do
+   User.create!(
+ # #3
+   name:     RandomData.random_name,
+   email:    RandomData.random_email,
+   password: RandomData.random_sentence
+   )
+ end
+ users = User.all
+
  # Create Posts
  50.times do
  # #1
    Post.create!(
  # #2
+     user:   users.sample,
      topic:  topics.sample,
      title:  RandomData.random_sentence,
      body:   RandomData.random_paragraph
@@ -50,7 +68,7 @@ require 'random_data'
    )
  end
 
-
+puts "#{User.count} users created"
 puts "#{Post.count}"
  Post.find_or_create_by(title: "Something", body: "Something else")
 puts "#{Post.count}"

@@ -8,7 +8,7 @@ let (:my_ad) do
     title: RandomData.random_sentence, 
     copy: RandomData.random_paragraph, 
     price: 99
-    )
+  )
 end 
 
   describe "GET #index" do
@@ -59,12 +59,12 @@ describe "GET new" do
 end
 
 describe "POST create" do 
+ 
   it "increases the number of ads by 1" do 
     get :show, {id: my_ad.id}
-    expect{post :create, advertisement: {title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: 99}}.to change {Advertisement, :count).by(1)
-end
+    expect{post :create, advertisement: {title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: 99}}.to change {Advertisement, :count}.by(1)
+  end
     
-
   it "assigns the new advertsement to @advertisement" do 
    post :create, avertisement: {title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: 99} 
    expect(assigns(:advertisement)).to eq Advertisement.last 
@@ -74,9 +74,5 @@ end
     post :create, advertisement: {title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: 99}
     expect(response).to redirect_to Advertisement.last 
   end
-  end 
-end
-
-
 
 end

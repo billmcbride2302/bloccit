@@ -12,19 +12,29 @@ class TopicsController < ApplicationController
      @topic = Topic.new
    end  
 
-   def create
-     @topic = Topic.new
-     @topic.name = params[:topic][:name]
-     @topic.description = params[:topic][:description]
-     @topic.public = params[:topic][:public]
+   # def create
+   #   @topic = Topic.new
+   #   @topic.name = params[:topic][:name]
+   #   @topic.description = params[:topic][:description]
+   #   @topic.public = params[:topic][:public]
  
-     if @topic.save
-       redirect_to @topic, notice: "Topic was saved successfully."
-     else
-       flash.now[:alert] = "Error creating topic. Please try again."
-       render :new
-     end
-   end
+   #   if @topic.save
+   #     redirect_to @topic, notice: "Topic was saved successfully."
+   #   else
+   #     flash.now[:alert] = "Error creating topic. Please try again."
+   #     render :new
+   #   end
+   # end
+
+   def create
+    @topic = Topic.new(topic_params)
+    if @topic.save
+      redirect_to @topic, notice: "Topic was saved successfully"
+    else
+      flash.now[:alert] = "Error creating topic. Please try again."
+      render :new
+    end
+  end
 
     def destroy
      @topic = Topic.find(params[:id])
@@ -44,11 +54,7 @@ class TopicsController < ApplicationController
 
     def update
      @topic = Topic.find(params[:id])
- 
-     @topic.name = params[:topic][:name]
-     @topic.description = params[:topic][:description]
-     @topic.public = params[:topic][:public]
- 
+     @topic.assign_attributes(topic_params)
      if @topic.save
         flash[:notice] = "Topic was updated."
        redirect_to @topic
@@ -58,5 +64,10 @@ class TopicsController < ApplicationController
      end
    end
 
+ private
+ 
+   def topic_params
+     params.require(:topic).permit(:name, :description, :public)
+   end
 
 end
