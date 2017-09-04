@@ -121,7 +121,7 @@
 
 # end
 
-equire 'rails_helper'
+require 'rails_helper'
 include RandomData
 
 RSpec.describe QuestionsController, type: :controller do
