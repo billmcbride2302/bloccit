@@ -5,6 +5,7 @@ let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", passw
 
    it { is_expected.to have_many(:posts) }
    it { is_expected.to have_many(:comments) }
+   it { is_expected.to have_many(:votes) }
 
 
    # Shoulda tests for name
