@@ -15,8 +15,7 @@ require 'random_data'
    password: 'helloworld'
  )
 
-# Create Topics
- 15.times do
+15.times do
    Topic.create!(
      name:         RandomData.random_sentence,
      description:  RandomData.random_paragraph
@@ -41,7 +40,7 @@ require 'random_data'
 
  # Create Posts
  50.times do
-post = Post.create!(
+     post = Post.create!(
      user:   users.sample,
      topic:  topics.sample,
      title:  RandomData.random_sentence,

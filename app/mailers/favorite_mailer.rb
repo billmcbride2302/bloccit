@@ -4,7 +4,6 @@ class FavoriteMailer < ApplicationMailer
 
   def new_comment(user, post, comment)
  
- # #18
      headers["Message-ID"] = "<comments/#{comment.id}@your-app-name.example>"
      headers["In-Reply-To"] = "<post/#{post.id}@your-app-name.example>"
      headers["References"] = "<post/#{post.id}@your-app-name.example>"
@@ -12,7 +11,8 @@ class FavoriteMailer < ApplicationMailer
      @user = user
      @post = post
      @comment = comment
-     mail(to: bill@pcrsocial.com, subject: "New comment on #{post.title}")
+    # mail( to:bill@pcrsocial.com, subject:"New comment on #{post.title}" )
+      mail(to: user.email, subject: "New comment on #{post.title}")
    end
 
    def new_post(post)
@@ -24,7 +24,8 @@ class FavoriteMailer < ApplicationMailer
  
      @post = post
 
-     mail(to: bill@pcrsocial.com, subject: "New comment on #{post.title}")
+    # mail(to:bill@pcrsocial.com, subject:"New comment on #{post.title}")
+       mail(to: user.email, subject: "New post #{post.title}")
    end
 
 
