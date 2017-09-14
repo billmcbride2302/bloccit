@@ -1,5 +1,5 @@
 class Topic < ApplicationRecord
-	has_many :posts , dependent: :destroy
+	has_many :posts, dependent: :destroy
 	has_many :sponsoredposts 
 
 	validates :name, length: { minimum: 5 }, presence: true

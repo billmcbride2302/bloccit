@@ -6,6 +6,10 @@ class VotesController < ApplicationController
      redirect_to :back
    end
 
+    def show
+     @vote = @post.votes
+   end
+
    def down_vote
      update_vote(-1)
      redirect_to :back

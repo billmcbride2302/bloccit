@@ -1,32 +1,32 @@
-class FavoritesController < ApplicationController
+class FavouritesController < ApplicationController
 
-	before_action :require_sign_in
- 
+  before_action :require_sign_in
+
    def create
- # #12
      post = Post.find(params[:post_id])
-     favorite = current_user.favorites.build(post: post)
- 
-     if favorite.save
-       flash[:notice] = "Post favorited."
+     favourite = current_user.favourites.build(post: post)
+
+     if favourite.save
+       flash[:notice] = "Post favourited."
      else
-       flash[:alert] = "Favoriting failed."
+       flash[:alert] = "Favouriting failed."
      end
- 
- # #13
+
      redirect_to [post.topic, post]
    end
 
-    def destroy
+
+   def destroy
      post = Post.find(params[:post_id])
-     favorite = current_user.favorites.find(params[:id])
- 
-     if favorite.destroy
-       flash[:notice] = "Post unfavorited."
+     favourite = current_user.favourites.find(params[:id])
+
+     if favourite.destroy
+       flash[:notice] = "Post unfavourited."
      else
-       flash[:alert] = "Unfavoriting failed."
+       flash[:alert] = "Unfavouriting failed."
      end
        redirect_to [post.topic, post]
    end
+
 
 end
